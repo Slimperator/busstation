@@ -1,6 +1,6 @@
 package com.busstation.server.storage.dao.impl;
 
-import com.busstation.server.storage.dao.Dao;
+import com.busstation.server.storage.dao.BusDao;
 import com.busstation.server.storage.xml.entity.Bus;
 import com.busstation.server.storage.xml.entity.Buses;
 import org.simpleframework.xml.core.Persister;
@@ -13,15 +13,15 @@ import java.util.*;
  * Created by Владимир on 26.03.2017.
  */
 @Component
-public class XmlBusDao implements Dao {
+public class XmlBusDao implements BusDao {
     private Persister persister;
     private ClassLoader classLoader;
     private File file;
     public XmlBusDao()
     {
-        Persister persister = new Persister();
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("BusTime.xml").getFile());
+        persister = new Persister();
+        classLoader = getClass().getClassLoader();
+        file = new File(classLoader.getResource("BusTime.xml").getFile());
     }
     public void createNewBus(Integer number, String begin, String end, String time)
     {
