@@ -1,8 +1,10 @@
 package com.busstation.server.storage.service;
 
-import com.busstation.server.storage.dao.Dao;
+import com.busstation.server.storage.dao.BusDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Владимир on 29.03.2017.
@@ -10,13 +12,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class BusService {
     @Autowired
-    private Dao dao;
+    private BusDao busDao;
 
-    public Dao getDao() {
-        return dao;
+    public void createNewBus(Integer number, String begin, String end, String time)
+    {
+        busDao.createNewBus(number, begin, end, time);
     }
-
-    public void setDao(Dao dao) {
-        this.dao = dao;
+    public void deleteBus(Integer number)
+    {
+        busDao.deleteBus(number);
+    }
+    public List<String> getBus(Integer page)
+    {
+        return busDao.getBus(page);
+    }
+    public Integer getBusCount()
+    {
+        return busDao.getBusCount();
     }
 }
