@@ -53,7 +53,7 @@ public class BusStationUI implements EntryPoint {
             }
         });
         getPageCount();
-        updateTable(page);
+        updateTable(new Integer(0));
     }
 
     private void updateTable(Integer page)
