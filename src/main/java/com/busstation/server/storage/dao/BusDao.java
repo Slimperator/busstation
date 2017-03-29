@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Created by Владимир on 29.03.2017.
  */
-public interface Dao {
+public interface BusDao {
     void createNewBus(Integer number, String begin, String end, String time);
-    public void deleteBus(Integer number);
-    public List<String> getBus(Integer page);
-    public Integer getBusCount();
+    void deleteBus(Integer number);
+    List<String> getBus(Integer page);
+    Integer getBusCount();
 }
