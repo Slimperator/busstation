@@ -1,6 +1,7 @@
 package com.busstation.server.storage.service;
 
 import com.busstation.server.storage.dao.BusDao;
+import com.busstation.shared.Sorts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,9 @@ public class BusService {
     {
         busDao.deleteBus(number);
     }
-    public List<String> getBus(Integer page)
+    public List<String> getBus(Integer page, Sorts sort)
     {
-        return busDao.getBus(page);
+        return busDao.getBus(page,sort);
     }
     public Integer getBusCount()
     {

@@ -9,3 +9,9 @@ h1 {
 body, td, a, div, .p {
     font-family: arial, sans-serif
 }
+
+.button{
+    background-color: #4CAF50;
+    color: #4CAF50;
+    font-family: "Calibri Light", sans-serif
+}

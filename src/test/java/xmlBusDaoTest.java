@@ -2,6 +2,7 @@
  * Created by Владимир on 29.03.2017.
  */
 import com.busstation.server.storage.dao.impl.XmlBusDao;
+import com.busstation.shared.Sorts;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class xmlBusDaoTest {
     }
     @Test
     public  void testGetBus() {
-        List<String> testList = dao.getBus(1);
+        List<String> testList = dao.getBus(1, Sorts.NumA);
         assertTrue("Get Bus Yep", (testList != null && testList.size()!=0));
     }
 }

@@ -18,12 +18,4 @@ public class BusConfirmation {
      */
     public interface AccountConfirmationJED extends JsonEncoderDecoder<BusConfirmation> {
     }
-    @Override
-    public String toString() {
-        if (GWT.isClient()) {
-            AccountConfirmationJED jed = GWT.create(AccountConfirmationJED.class);
-            return jed.encode(this).toString();
-        }
-        return super.toString();
-    }
 }

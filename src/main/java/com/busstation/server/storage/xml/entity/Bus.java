@@ -6,7 +6,7 @@ import org.simpleframework.xml.*;
  * Created by Владимир on 26.03.2017.
  */
 @Root(name="bus")
-public class Bus {
+public class Bus implements Comparable<Bus>{
     @Attribute(required=false, name="number")
     public Integer number;
     @Attribute(required=false, name="begin")
@@ -15,4 +15,8 @@ public class Bus {
     public String end;
     @Attribute(required=false, name="time")
     public String time;
+
+    public int compareTo(Bus other) {
+        return number.compareTo(other.number);
+    }
 }

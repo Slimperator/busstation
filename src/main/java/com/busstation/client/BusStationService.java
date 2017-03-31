@@ -1,5 +1,6 @@
 package com.busstation.client;
 
+import com.busstation.shared.Sorts;
 import com.google.gwt.core.client.GWT;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.Resource;
@@ -27,10 +28,10 @@ public interface BusStationService extends RestService {
         }
     }
     @GET
-    @Path("/bus")
+    @Path("/bus/{page}/{sortType}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void getBus(Integer page,MethodCallback<List<BusConfirmation>> callback);
+    public void getBus(@QueryParam("page")Integer page, @QueryParam("sortType")Sorts sort, MethodCallback<List<BusConfirmation>> callback);
     @POST
     @Path("/bus")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -45,5 +46,5 @@ public interface BusStationService extends RestService {
     @Path("/bus")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void deleteBus(BusConfirmation busConfirmation, MethodCallback<Void> callback);
+    public void deleteBus(Integer number, MethodCallback<Void> callback);
 }

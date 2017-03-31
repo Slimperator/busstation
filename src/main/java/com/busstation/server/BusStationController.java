@@ -6,13 +6,13 @@ package com.busstation.server;
 import com.busstation.client.BusConfirmation;
 import com.busstation.server.storage.dao.impl.XmlBusDao;
 import com.busstation.server.storage.service.BusService;
+import com.busstation.shared.Sorts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
+import javax.ws.rs.QueryParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ public class BusStationController {
     @Autowired
     private BusService connector;
 
-    @RequestMapping(value = "/bus", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/bus/{page}/{sortType}", method = RequestMethod.GET, headers = "Accept=application/json")
     public @ResponseBody
-    List<BusConfirmation> getBus(Integer page) throws ServletException, IOException {
-        List<String> buses = connector.getBus(page);
+    List<BusConfirmation> getBus(@QueryParam("page")Integer page, @RequestParam("sortType")Sorts sortType) throws ServletException, IOException {
+        List<String> buses = connector.getBus(page, sortType);
         List<BusConfirmation> result = new ArrayList<>();
         for(String bus: buses)
         {
@@ -42,7 +42,7 @@ public class BusStationController {
     }
     @RequestMapping(value = "/bus", method = RequestMethod.POST, headers = "Accept=application/json")
     public @ResponseBody
-    void addBus(BusConfirmation busConfirmation) throws ServletException, IOException {
+    void addBus(@RequestBody BusConfirmation busConfirmation) throws ServletException, IOException {
         connector.createNewBus(busConfirmation.number, busConfirmation.begin, busConfirmation.end, busConfirmation.time);
     }
     @RequestMapping(value = "/busCount", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -52,7 +52,7 @@ public class BusStationController {
     }
     @RequestMapping(value = "/bus", method = RequestMethod.DELETE, headers = "Accept=application/json")
     public @ResponseBody
-    void deleteBus(BusConfirmation busConfirmation) throws ServletException, IOException {
-        connector.deleteBus(busConfirmation.number);
+    void deleteBus(@RequestBody Integer number) throws ServletException, IOException {
+        connector.deleteBus(number);
     }
 }
